@@ -30,16 +30,28 @@ World models integrate raw data from various modalities—such as images and lan
 
 - EMBODIED World Model And benchmark
 
-### Seeing and Hearing: Open-domain Visual-Audio Generation with Diffusion Latent Aligners
+###  (CVPR2024) Seeing and Hearing: Open-domain Visual-Audio Generation with Diffusion Latent Aligners
 Video and audio content creation serves as the core technique for the movie industry and professional users. Recently, existing diffusion-based methods tackle video and audio generation separately, which hinders the technique transfer from academia to industry. In this work, we aim at filling the gap, with a carefully designed optimization-based framework for cross-visual-audio and joint-visual-audio generation. We observe the powerful generation ability of off-the-shelf video or audio generation models. Thus, instead of training the giant models from scratch, we propose to bridge the existing strong models with a shared latent representation space. Specifically, we propose a multimodality latent aligner with the pre-trained ImageBind model. Our latent aligner shares a similar core as the classifier guidance that guides the diffusion denoising process during inference time. Through carefully designed optimization strategy and loss functions, we show the superior performance of our method on joint video-audio generation, visual-steered audio generation, and audio-steered visual generation tasks. The project website can be found at https://yzxing87.github.io/Seeing-and-Hearing/
 
 - keywords: audio-to-video generation, joint modality generation
 
 
-### Sequential Modeling Enables Scalable Learning for Large Vision Models
+### (CVPR2024) Sequential Modeling Enables Scalable Learning for Large Vision Models
 We introduce a novel sequential modeling approach which enables learning a Large Vision Model (LVM) without making use of any linguistic data. To do this, we deﬁne a common format, “visual sentences”, in which we can represent raw images and videos as well as annotated data sources such as semantic segmentations and depth reconstructions without needing any meta-knowledge beyond the pixels. Once this wide variety of visual data (comprising 420 billion tokens) is represented as sequences, the model can be trained to minimize a cross-entropy loss for next token prediction. By training across various scales of model architecture and data diversity, we provide empirical evidence that our models scale effectively. Many different vision tasks can be solved by designing suitable visual prompts at test time.
 
 
 
+### Learning 4D Embodied World Models
+In this paper, we present a 4D embodied world model, which takes in an image observation and language instruction as input and predicts a 4D dynamic mesh predicting how the scene will change as the embodied agent performs actions based on the given instructions. In contrast to previously learned world models which typically generate 2D videos, **our 4D model provides detailed 3D information on precise configurations and shape of objects in a scene over time**. This allows us to effectively learn accurate inverse dynamic models for an embodied agent to execute a policy for interacting with the environment. To construct a dataset to train such 4D world models, we first annotate large-scale existing video robotics dataset using pretrained depth and normal prediction models to construct 3D consistent 4D models of each video. To efficiently learn generative models on this 4D data, we propose to train a video generative model on this annotated dataset, which jointly predicts RGB-DN (RGB, Depth, and Normal) for each video. We then present an algorithm to directly convert generated RGB, Depth and Normal images into high-quality dynamic 4D mesh models of the world. We illustrate how this enables us to predict high-quality meshes consistent across both time and space from embodied scenarios, render novel views for embodied scenes, as well as construct policies that substantially outperform those from prior 2D and 3D models of the world. Our code, model, and dataset will be made publicly available.
+
+"To efficiently represent and predict the dynamics of the world, we propose a substantially more lightweight representation of the 4D world, consisting of predicting a sequence of RGB, depth and normal maps of the scene."
+
+
 video-to-video Generation:
 - Easyanimate: A high-performance long video generation method based on transformer architecture
+
+
+###  (CVPR2024) VideoBooth: Diffusion-based Video Generation with Image Prompts
+Text-driven video generation witnesses rapid progress. However, merely using text prompts is not enough to depict the desired subject appearance that accurately aligns with users' intents, especially for customized content creation. In this paper, we study the task of video generation with image prompts, which provide more accurate and direct content control beyond the text prompts. Specifically, we propose a feed-forward framework VideoBooth, with two dedicated designs: 1) We propose to embed image prompts in a coarse-to-fine manner. **Coarse visual embeddings from image encoder provide high-level encodings of image prompts**, while fine visual embeddings from the proposed attention injection module provide multi-scale and detailed encoding of image prompts. These two complementary embeddings can faithfully capture the desired appearance. 2) In the attention injection module at fine level, multi-scale image prompts are fed into different cross-frame attention layers as additional keys and values. This extra spatial information refines the details in the first frame and then it is propagated to the remaining frames, which maintains temporal consistency. Extensive experiments demonstrate that VideoBooth achieves state-of-the-art performance in generating customized high-quality videos with subjects specified in image prompts. Notably, VideoBooth is a generalizable framework where a single model works for a wide range of image prompts with feed-forward pass.
+
+
